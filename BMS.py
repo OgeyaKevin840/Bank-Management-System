@@ -5,13 +5,13 @@ class BankAccount:
         self.__balance = 0
         self._transaction_history = []
 
-        # Use setter to validate initial balance
+      
         self.balance = initial_balance
 
-    # ------------------ PROPERTIES ------------------ #
+    
     @property
     def account_number(self):
-        return self.__account_number  # Read-only
+        return self.__account_number  
 
     @property
     def balance(self):
@@ -23,8 +23,7 @@ class BankAccount:
             raise ValueError("Balance cannot be negative")
         self.__balance = value
 
-    # ------------------ METHODS ------------------ #
-    def deposit(self, amount):
+   
         if amount <= 0:
             raise ValueError("Deposit amount must be positive")
 
@@ -47,12 +46,12 @@ class BankAccount:
     def get_transaction_history(self):
         return self._transaction_history.copy()
 
-    # ------------------ HELPER ------------------ #
+  
     def _log_transaction(self, message):
         self._transaction_history.append(message)
 
 
-# ------------------ SUBCLASS ------------------ #
+
 class SavingsAccount(BankAccount):
     def __init__(self, account_number, account_holder, initial_balance=0, interest_rate=0.02):
         super().__init__(account_number, account_holder, initial_balance)
@@ -64,20 +63,20 @@ class SavingsAccount(BankAccount):
         self._log_transaction(f"Interest applied: {interest}")
 
 
-# ------------------ TEST / MAIN ------------------ #
+
 if __name__ == "__main__":
-    # Create accounts
+    
     acc1 = BankAccount("123456", "Kevin Ogeya", 1000)
     acc2 = SavingsAccount("654321", "Junior Ogeya", 500, 0.05)
 
-    # Transactions
+   
     acc1.deposit(500)
     acc1.withdraw(300)
 
     acc2.deposit(200)
     acc2.apply_interest()
 
-    # Output
+ 
     print("Account 1 Balance:", acc1.get_balance())
     print("Account 2 Balance:", acc2.get_balance())
 
